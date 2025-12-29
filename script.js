@@ -83,34 +83,57 @@ exitBtn.addEventListener('click', () => {
 
 
 function takeCommand(message) {
-     if (message.includes("hello") || message.includes("hi") || message.includes("yo")) {
+
+    if (message.includes("hello") || message.includes("hi") || message.includes("yo")) {
         wishMe();
-    
+
     } else if (message.includes("who are you") || message.includes("hu r u")) {
         speak("I am THALA, a virtual assistant created by Saif");
-    }
-     else if (message.includes("how are you") ) {
-        speak("I am good, how may i help you ?");
-    }
-     else if (message.includes("open youtube")) {
+
+    } else if (message.includes("how are you")) {
+        speak("I am good, how may I help you?");
+
+    } else if (message.includes("open youtube")) {
         speak("Opening YouTube...");
         window.open("https://www.youtube.com", "_blank");
+
     } else if (message.includes("open google")) {
         speak("Opening Google...");
         window.open("https://www.google.com", "_blank");
+
     } else if (message.includes("open facebook")) {
         speak("Opening Facebook...");
         window.open("https://www.facebook.com", "_blank");
+
     } else if (message.includes("open instagram")) {
         speak("Opening Instagram...");
         window.open("https://www.instagram.com", "_blank");
+
     } else if (message.includes("open calculator")) {
         speak("Opening Calculator...");
         window.open("calculator://");
+
     } else if (message.includes("open whatsapp")) {
         speak("Opening WhatsApp...");
         window.open("https://web.whatsapp.com", "_blank");
+
     } else if (message.includes("time")) {
+        const time = new Date().toLocaleString(undefined, { hour: "numeric", minute: "numeric" });
+        speak("The time is " + time);
+
+    } else if (message.includes("date")) {
+        const date = new Date().toLocaleString(undefined, { day: "numeric", month: "short" });
+        speak("Today's date is " + date);
+
+    } else {
+        // Smart search fallback
+        let searchQuery = message.replace(/who is|what is|who are|what are|define|tell me about|search|google/gi, "").trim();
+
+        speak("This is what I found on the internet regarding " + searchQuery);
+        window.open(`https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`, "_blank");
+    }
+}
+
         const time = new Date().toLocaleString(undefined, { hour: "numeric", minute: "numeric" });
         speak("The time is " + time);
     } else if (message.includes("date")) {
@@ -126,3 +149,4 @@ function takeCommand(message) {
     // Open Google search
     window.open(`https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`, "_blank");
 }
+
