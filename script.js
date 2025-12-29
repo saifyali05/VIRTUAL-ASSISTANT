@@ -83,14 +83,14 @@ exitBtn.addEventListener('click', () => {
 
 
 function takeCommand(message) {
-     if (message.includes("hello") || message.includes("hi")) {
+     if (message.includes("hello") || message.includes("hi") || message.includes("yo")) {
         wishMe();
     
     } else if (message.includes("who are you") || message.includes("hu r u")) {
         speak("I am THALA, a virtual assistant created by Saif");
     }
-     else if (message.includes("how are you") || message.includes("hu r u")) {
-        speak("I am good, how may i help you ");
+     else if (message.includes("how are you") ) {
+        speak("I am good, how may i help you ?");
     }
      else if (message.includes("open youtube")) {
         speak("Opening YouTube...");
@@ -116,8 +116,13 @@ function takeCommand(message) {
     } else if (message.includes("date")) {
         const date = new Date().toLocaleString(undefined, { day: "numeric", month: "short" });
         speak("Today's date is " + date);
-    } else {
-        speak("This is what I found on the internet regarding " + message);
-        window.open(`https://www.google.com/search?q=${message}`, "_blank");
-    }
+    else {
+    // Remove common question words
+    let searchQuery = message.replace(/who is|what is|who are|what are|define|tell me about|search|google/gi, "").trim();
+
+    // Speak response
+    speak("This is what I found on the internet regarding " + searchQuery);
+
+    // Open Google search
+    window.open(`https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`, "_blank");
 }
