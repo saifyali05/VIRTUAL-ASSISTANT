@@ -94,7 +94,8 @@ B.Tech CSE | Web Developer in the making
 * Add more voice commands
 * Integrate APIs (weather, search, music)
 * Dark / light theme toggle
-* Mobile browser optimization
+* Mobile browser optimization'
+* AI for smarter response 
 
 ---
 
